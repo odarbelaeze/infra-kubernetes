@@ -1,0 +1,16 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: demo-ingress
+  namespace: demo
+  annotations:
+    kubernetes.io/ingress.class: nginx
+spec:
+  rules:
+    - host: something.arbelaez.org
+      http:
+        paths:
+          - backend:
+              serviceName: teama-api
+              servicePort: 80
+

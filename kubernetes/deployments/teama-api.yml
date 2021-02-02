@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
       - name: teama-api
-        image: odarbelaeze/teama-api:main
+        image: odarbelaeze/teama-api:latest
         imagePullPolicy: Always
         ports:
         - containerPort: 8080

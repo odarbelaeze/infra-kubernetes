@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nice-ui
+  namespace: demo
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nice-ui
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: nice-ui
+    spec:
+      containers:
+      - name: nice-ui
+        image: odarbelaeze/nice-ui:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 80

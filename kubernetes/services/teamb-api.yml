@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    run: teamb-api
+  name: teamb-api
+  namespace: demo
+spec:
+  ports:
+  - port: 80
+    targetPort: 8080
+  selector:
+    app: teamb-api
+  type: ClusterIP

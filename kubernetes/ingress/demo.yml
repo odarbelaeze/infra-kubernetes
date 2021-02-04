@@ -13,6 +13,7 @@ spec:
   tls:
   - hosts:
     - demo.arbelaez.org
+    - demo.arbelaez.dev
     secretName: demo-ingress-tls-again
   rules:
   - host: demo.arbelaez.org
@@ -30,6 +31,30 @@ spec:
           backend:
             service:
               name: teamb-api
+              port:
+                number: 80
+        - path: /
+          pathType: Prefix
+          backend:
+            service:
+              name: nice-ui
+              port:
+                number: 80
+  - host: demo.arbelaez.dev
+    http:
+      paths:
+        - path: /api/teama
+          pathType: Prefix
+          backend:
+            service:
+              name: teamb-api
+              port:
+                number: 80
+        - path: /api/teamb
+          pathType: Prefix
+          backend:
+            service:
+              name: teama-api
               port:
                 number: 80
         - path: /

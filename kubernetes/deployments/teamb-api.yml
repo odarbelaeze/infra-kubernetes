@@ -26,4 +26,4 @@ spec:
         - containerPort: 8080
         env:
         - name: MESSAGE
-          value: "Hello from team a's API"
+          value: "Hello from team b's API"

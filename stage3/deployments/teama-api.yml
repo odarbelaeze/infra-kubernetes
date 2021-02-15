@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: teama-api
+  namespace: demo
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: teama-api
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: teama-api
+    spec:
+      containers:
+      - name: teama-api
+        image: odarbelaeze/teama-api:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080
+        env:
+        - name: MESSAGE
+          value: "Hello from team a's API"

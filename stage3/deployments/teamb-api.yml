@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: teamb-api
+  namespace: demo
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: teamb-api
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: teamb-api
+    spec:
+      containers:
+      - name: teamb-api
+        image: odarbelaeze/teamb-api:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080
+        env:
+        - name: MESSAGE
+          value: "Hello from team b's API"
